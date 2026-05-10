@@ -4,16 +4,20 @@ Automate your B2B outreach from Map to Message for $0.
 This project is an end-to-end Python pipeline designed to bypass expensive lead-generation tools. It crawls Google Maps for restaurant data across 64 districts, cleans the data into professional Excel reports, and automates personalized WhatsApp outreach using Selenium.
 
 Project Structure
-Plaintext
+
+```
 ZeroCost-LeadGen-Engine/
-├── venv/                    # Virtual environment
-├── scraper_all.py          # Multi-district crawler (The "Data Miner")
-├── whatsapp_sender.py      # Automated outreach (The "Messenger")
-├── districts.txt           # Targeting list (e.g., 64 districts)
-├── promo.jpeg              # Your marketing flyer
-└── results/                # Scraped lead data (.xlsx)
-    ├── Dhaka.xlsx
-    └── ALL_DISTRICTS.xlsx  # Combined master database
+├── venv/                    # Isolated Python environment
+├── scraper_all.py           # The "Data Miner": Multi-district crawler
+├── whatsapp_sender.py       # The "Messenger": Automated outreach engine
+├── districts.txt            # Targeting list: (e.g., list of 64 districts)
+├── promo.jpeg               # Marketing flyer to be attached in WhatsApp
+└── results/                 # Output directory for leads
+    ├── .gitkeep             # Keeps folder in Git while ignoring data
+    ├── Dhaka.xlsx           # Sample district-specific lead data
+    └── ALL_DISTRICTS.xlsx   # Combined Master Database
+```
+
  The Tech Stack: Why These Tools?
 To keep this project Zero-Cost, we utilize a specific "Digital Workforce" of open-source libraries:
 
@@ -25,10 +29,11 @@ Webdriver-Manager: Ensures environment stability by automatically syncing the Ch
 
 Openpyxl: A standalone engine that writes professional .xlsx files without requiring a paid Microsoft Office license.
 
- Getting Started
+Getting Started
+
 1. Installation
 Clone the repository and install the dependencies:
-
+```
 Bash
 # Clone the repo
 git clone https://github.com/yourusername/ZeroCost-LeadGen-Engine.git
@@ -40,11 +45,13 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install requirements
 pip install selenium pandas webdriver-manager openpyxl
+```
 2. Data Collection
 Add your target regions to districts.txt and run the crawler:
-
+```
 Bash
 python scraper_all.py
+```
 The script will iterate through every district, scroll through Google Maps results, and save individual Excel files in the /results folder.
 
 3. Automated Outreach
@@ -53,18 +60,20 @@ Place your promotional image as promo.jpeg.
 Update the message variable in whatsapp_sender.py.
 
 Run the sender:
-
+```
 Bash
 python whatsapp_sender.py
+```
 Note: You will be prompted to scan the WhatsApp Web QR code once. The script handles the rest.
 
 Dev Perspective: How it Works
 The Infinite Scroll Hack
 Google Maps lazy-loads results. The scraper injects JavaScript to force-scroll the results pane:
-
+```
 Python
 scrollable = driver.find_element(By.CSS_SELECTOR, 'div[role="feed"]')
 driver.execute_script('arguments[0].scrollTop = arguments[0].scrollHeight', scrollable)
+```
 Data Sanitization
 Using Pandas, we ensure every phone number follows the international format required for WhatsApp URL schemes, removing spaces, dashes, and local prefixes automatically.
 
@@ -78,4 +87,4 @@ Disclaimer: This project is for educational and legitimate B2B marketing purpose
  Contributing
 Found a bug or want to add a feature (like Telegram support)? Feel free to fork and submit a PR!
 
-Built with ❤️ for Growth Hackers and Devs.
+Built with for Growth Hackers and Devs.

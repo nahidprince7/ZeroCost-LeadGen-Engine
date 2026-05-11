@@ -9,7 +9,7 @@ def scrape_district(district_name):
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     data = []
     
-    url = f"https://www.google.com/maps/search/butcher+shop+{district_name}+Bangladesh"
+    url = f"https://www.google.com/maps/search/clothing+shop+{district_name}+Bangladesh"
     driver.get(url)
     time.sleep(5)
     

@@ -15,13 +15,13 @@ def scrape_district(district_name):
     
     # Scroll to load all
     scrollable = driver.find_element(By.CSS_SELECTOR, 'div[role="feed"]')
-    for _ in range(5):
+    for _ in range(15):
         driver.execute_script('arguments[0].scrollTop = arguments[0].scrollHeight', scrollable)
         time.sleep(3)
     
     # Get all shop links
     shops = driver.find_elements(By.CSS_SELECTOR, 'a[href*="/maps/place/"]')
-    shop_links = [shop.get_attribute('href') for shop in shops[:50]]  # Get first 50
+    shop_links = [shop.get_attribute('href') for shop in shops[:150]]  # Get first 50
     
     print(f"Found {len(shop_links)} shops in {district_name}\n")
     
